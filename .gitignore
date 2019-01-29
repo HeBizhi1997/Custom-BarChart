@@ -3,3 +3,6 @@
 ################################################################################
 
 /Custom_Bar/Custom_Bar/obj/Debug
+/Custom_Bar/Custom_Bar/bin/Debug
+*.sln
+/Custom_Bar/.vs/Custom_Bar/v15
