@@ -59,15 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="BarChartControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="BarChartEx.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BarChartStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,10 +71,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BarChartControl.xaml.cs">
-      <DependentUpon>BarChartControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BarChart.cs" />
     <Compile Include="BarChartEx.xaml.cs">
       <DependentUpon>BarChartEx.xaml</DependentUpon>
     </Compile>
