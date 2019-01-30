@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -11,8 +12,12 @@ namespace Custom_Bar
     /// </summary>
     public partial class BarChartEx : UserControl
     {
+
         #region Tempelete DependencyProperty
 
+        #region 文本
+
+        [Description("标题文本"), Category("文本")]
         /// <summary>
         /// 标题
         /// </summary>
@@ -24,6 +29,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(BarChartEx), new PropertyMetadata(string.Empty));
 
+        [Description("备注文本"), Category("文本")]
         /// <summary>
         /// 备注
         /// </summary>
@@ -34,8 +40,12 @@ namespace Custom_Bar
         }
         public static readonly DependencyProperty RemarkProperty =
             DependencyProperty.Register("Remark", typeof(string), typeof(BarChartEx), new PropertyMetadata(string.Empty));
+        
+        #endregion
+        
+        #region 背景色
 
-
+        [Description("标题背景色"), Category("背景色")]
         /// <summary>
         /// 标题背景色
         /// </summary>
@@ -47,6 +57,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty TitleBackgroundProperty =
             DependencyProperty.Register("TitleBackground", typeof(Brush), typeof(BarChartEx), new PropertyMetadata(Brushes.Transparent));
 
+        [Description("备注背景色"), Category("背景色")]
         /// <summary>
         /// 备注背景色
         /// </summary>
@@ -58,6 +69,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty RemarkBackgroundProperty =
             DependencyProperty.Register("RemarkBackground", typeof(Brush), typeof(BarChartEx), new PropertyMetadata(Brushes.Transparent));
 
+        [Description("进度条背景色"), Category("背景色")]
         /// <summary>
         /// 进度条背景色
         /// </summary>
@@ -69,7 +81,11 @@ namespace Custom_Bar
         public static readonly DependencyProperty BarBackgroundProperty =
             DependencyProperty.Register("BarBackground", typeof(Brush), typeof(BarChartEx), new PropertyMetadata((Brush)(new BrushConverter().ConvertFromString("#FF00BBB3"))));
 
+        #endregion
 
+        #region 前景色
+
+        [Description("标题前景色"), Category("前景色")]
         /// <summary>
         /// 标题前景色
         /// </summary>
@@ -81,6 +97,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty TitleForegroundProperty =
             DependencyProperty.Register("TitleForeground", typeof(Brush), typeof(BarChartEx), new PropertyMetadata(Brushes.White));
 
+        [Description("备注前景色"), Category("前景色")]
         /// <summary>
         /// 备注前景色
         /// </summary>
@@ -92,6 +109,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty RemarkForegroundProperty =
             DependencyProperty.Register("RemarkForeground", typeof(Brush), typeof(BarChartEx), new PropertyMetadata(Brushes.White));
 
+        [Description("x轴数据前景色"), Category("前景色")]
         /// <summary>
         /// x轴前景色
         /// </summary>
@@ -103,6 +121,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty XAxisForegroundProperty =
             DependencyProperty.Register("XAxisForeground", typeof(Brush), typeof(BarChartEx), new PropertyMetadata(Brushes.White));
 
+        [Description("y轴数据前景色"), Category("前景色")]
         /// <summary>
         /// 进度数据前景色
         /// </summary>
@@ -114,7 +133,11 @@ namespace Custom_Bar
         public static readonly DependencyProperty BarDateForegroundProperty =
             DependencyProperty.Register("BarDateForeground", typeof(Brush), typeof(BarChartEx), new PropertyMetadata(Brushes.White));
 
+        #endregion
 
+        #region 字号
+
+        [Description("标题字号"), Category("字号")]
         /// <summary>
         /// 标题字号
         /// </summary>
@@ -126,6 +149,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty TitleFontSizeProperty =
             DependencyProperty.Register("TitleFontSize", typeof(double), typeof(BarChartEx), new PropertyMetadata(26d));
 
+        [Description("备注字号"), Category("字号")]
         /// <summary>
         /// 备注字号
         /// </summary>
@@ -137,6 +161,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty RemarkFontSizeProperty =
             DependencyProperty.Register("RemarkFontSize", typeof(double), typeof(BarChartEx), new PropertyMetadata(10d));
 
+        [Description("x轴数据字号"), Category("字号")]
         /// <summary>
         /// x轴数据字号
         /// </summary>
@@ -148,6 +173,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty XAxisFontSizeProperty =
             DependencyProperty.Register("XAxisFontSize", typeof(double), typeof(BarChartEx), new PropertyMetadata(12d));
 
+        [Description("y轴数据字号"), Category("字号")]
         /// <summary>
         /// 进度数据字号
         /// </summary>
@@ -159,7 +185,11 @@ namespace Custom_Bar
         public static readonly DependencyProperty BarDateFontSizeProperty =
             DependencyProperty.Register("BarDateFontSize", typeof(double), typeof(BarChartEx), new PropertyMetadata(8d));
 
+        #endregion
 
+        #region 字体
+
+        [Description("标题字体"), Category("字体")]
         /// <summary>
         /// 标题字体
         /// </summary>
@@ -171,6 +201,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty TitleFontFamilyProperty =
             DependencyProperty.Register("TitleFontFamily", typeof(FontFamily), typeof(BarChartEx), new PropertyMetadata(new FontFamily("Simsun")));
 
+        [Description("备注字体"), Category("字体")]
         /// <summary>
         /// 备注字体
         /// </summary>
@@ -182,6 +213,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty RemarkFontFamilyProperty =
             DependencyProperty.Register("RemarkFontFamily", typeof(FontFamily), typeof(BarChartEx), new PropertyMetadata(new FontFamily("Simsun")));
 
+        [Description("x轴数据字体"), Category("字体")]
         /// <summary>
         /// x轴数据字体
         /// </summary>
@@ -193,6 +225,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty XAxisFontFamilyProperty =
             DependencyProperty.Register("XAxisFontFamily", typeof(FontFamily), typeof(BarChartEx), new PropertyMetadata(new FontFamily("Simsun")));
 
+        [Description("y轴数据字体"), Category("字体")]
         /// <summary>
         /// 进度数据字体
         /// </summary>
@@ -204,7 +237,11 @@ namespace Custom_Bar
         public static readonly DependencyProperty BarDateFontFamilyProperty =
             DependencyProperty.Register("BarDateFontFamily", typeof(FontFamily), typeof(BarChartEx), new PropertyMetadata(new FontFamily("Simsun")));
 
+        #endregion
 
+        #region 其他样式控制属性
+
+        [Description("进度条宽度"), Category("其他样式属性")]
         /// <summary>
         /// 进度条宽度
         /// </summary>
@@ -216,6 +253,7 @@ namespace Custom_Bar
         public static readonly DependencyProperty BarWidthProperty =
             DependencyProperty.Register("BarWidth", typeof(double), typeof(BarChartEx), new PropertyMetadata(20d));
 
+        [Description("动画加载时间"), Category("其他样式属性")]
         /// <summary>
         /// 动画加载时间
         /// </summary>
@@ -229,8 +267,11 @@ namespace Custom_Bar
 
         #endregion
 
+        #endregion
+
         #region Data Property
 
+        [Description("X轴绑定对象(string)"), Category("数据处理")]
         /// <summary>
         /// X轴关联属性名
         /// </summary>
@@ -250,6 +291,7 @@ namespace Custom_Bar
                 }
             }));
 
+        [Description("Y轴绑定对象(string)"), Category("数据处理")]
         /// <summary>
         /// Y轴关联属性名
         /// </summary>
@@ -272,6 +314,7 @@ namespace Custom_Bar
                  }
              }));
 
+        [Description("数据源"), Category("数据处理")]
         /// <summary>
         /// 数据源
         /// </summary>

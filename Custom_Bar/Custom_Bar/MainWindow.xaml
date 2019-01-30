@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Custom_Bar"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" Background="Gray">
-    <Grid>
+    <WrapPanel>
 
-        <local:BarChartEx x:Name="MyTable" Height="400" Width="600" Title="this is a title" Remark="Remark:这里是备注这里是备注这里是备注"/>
+        <local:BarChartEx x:Name="MyTable" Height="400" Width="600" Title="this is a title" Remark="Remark:这里是备注这里是备注这里是备注" Margin="10"/>
 
-    </Grid>
+    </WrapPanel>
 </Window>
