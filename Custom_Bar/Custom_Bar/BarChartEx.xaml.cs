@@ -138,7 +138,7 @@ namespace Custom_Bar
             DependencyProperty.Register("RemarkFontSize", typeof(double), typeof(BarChartEx), new PropertyMetadata(10d));
 
         /// <summary>
-        /// x轴字号
+        /// x轴数据字号
         /// </summary>
         public double XAxisFontSize
         {
@@ -161,6 +161,51 @@ namespace Custom_Bar
 
 
         /// <summary>
+        /// 标题字体
+        /// </summary>
+        public FontFamily TitleFontFamily
+        {
+            get { return (FontFamily)GetValue(TitleFontFamilyProperty); }
+            set { SetValue(TitleFontFamilyProperty, value); }
+        }
+        public static readonly DependencyProperty TitleFontFamilyProperty =
+            DependencyProperty.Register("TitleFontFamily", typeof(FontFamily), typeof(BarChartEx), new PropertyMetadata(new FontFamily("Simsun")));
+
+        /// <summary>
+        /// 备注字体
+        /// </summary>
+        public FontFamily RemarkFontFamily
+        {
+            get { return (FontFamily)GetValue(RemarkFontFamilyProperty); }
+            set { SetValue(RemarkFontFamilyProperty, value); }
+        }
+        public static readonly DependencyProperty RemarkFontFamilyProperty =
+            DependencyProperty.Register("RemarkFontFamily", typeof(FontFamily), typeof(BarChartEx), new PropertyMetadata(new FontFamily("Simsun")));
+
+        /// <summary>
+        /// x轴数据字体
+        /// </summary>
+        public FontFamily XAxisFontFamily
+        {
+            get { return (FontFamily)GetValue(XAxisFontFamilyProperty); }
+            set { SetValue(XAxisFontFamilyProperty, value); }
+        }
+        public static readonly DependencyProperty XAxisFontFamilyProperty =
+            DependencyProperty.Register("XAxisFontFamily", typeof(FontFamily), typeof(BarChartEx), new PropertyMetadata(new FontFamily("Simsun")));
+
+        /// <summary>
+        /// 进度数据字体
+        /// </summary>
+        public FontFamily BarDateFontFamily
+        {
+            get { return (FontFamily)GetValue(BarDateFontFamilyProperty); }
+            set { SetValue(BarDateFontFamilyProperty, value); }
+        }
+        public static readonly DependencyProperty BarDateFontFamilyProperty =
+            DependencyProperty.Register("BarDateFontFamily", typeof(FontFamily), typeof(BarChartEx), new PropertyMetadata(new FontFamily("Simsun")));
+
+
+        /// <summary>
         /// 进度条宽度
         /// </summary>
         public double BarWidth
@@ -170,6 +215,17 @@ namespace Custom_Bar
         }
         public static readonly DependencyProperty BarWidthProperty =
             DependencyProperty.Register("BarWidth", typeof(double), typeof(BarChartEx), new PropertyMetadata(20d));
+
+        /// <summary>
+        /// 动画加载时间
+        /// </summary>
+        public double AnimotionSpeed
+        {
+            get { return (double)GetValue(AnimotionSpeedProperty); }
+            set { SetValue(AnimotionSpeedProperty, value); }
+        }
+        public static readonly DependencyProperty AnimotionSpeedProperty =
+            DependencyProperty.Register("AnimotionSpeed", typeof(double), typeof(BarChartEx), new PropertyMetadata(2d));
 
         #endregion
 
@@ -275,7 +331,8 @@ namespace Custom_Bar
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Foreground = BarDateForeground,
-                FontSize = BarDateFontSize
+                FontSize = BarDateFontSize,
+                FontFamily = BarDateFontFamily
             };
             //进度条
             Border _bar = new Border
@@ -293,7 +350,7 @@ namespace Custom_Bar
                 {
                     From = 0,
                     To = date * _data2BarHeight,
-                    Duration = TimeSpan.FromSeconds(1)
+                    Duration = TimeSpan.FromSeconds(AnimotionSpeed)
                 };
                 _bar.BeginAnimation(Border.HeightProperty, animation);
             };
@@ -308,15 +365,16 @@ namespace Custom_Bar
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Foreground = XAxisForeground,
-                FontSize = XAxisFontSize
+                FontSize = XAxisFontSize,
+                FontFamily = XAxisFontFamily
             };
-
+            //添加x轴数据旋转的动画 防止文本重叠
             _x.Loaded += (s, e) =>
             {
                 _x.RenderTransformOrigin = new Point(1, 1);
                 _x.RenderTransform = new RotateTransform();
                 var rt = (RotateTransform)_x.RenderTransform;
-                rt.BeginAnimation(RotateTransform.AngleProperty, new DoubleAnimation(0, -45, TimeSpan.FromSeconds(2)));
+                rt.BeginAnimation(RotateTransform.AngleProperty, new DoubleAnimation(0, -45, TimeSpan.FromSeconds(AnimotionSpeed)));
             };
             //一列容器（包括x轴）
             StackPanel _Item = new StackPanel
@@ -340,9 +398,9 @@ namespace Custom_Bar
         {
             foreach (var item in chartEx.dataSource)
             {
-                System.Reflection.PropertyInfo[] properties = item.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
                 dynamic xValue = 0, yValue = 0;
 
+                //通过映射获取数据集中的值
                 xValue = item.GetType().GetProperty(chartEx.XValuePath).GetValue(item);
                 yValue = item.GetType().GetProperty(chartEx.YValuePath).GetValue(item);
 

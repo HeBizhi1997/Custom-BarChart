@@ -19,13 +19,15 @@
                    Text="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=Title}"
                    Background="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=TitleBackground}"
                    Foreground="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=TitleForeground}"
-                   FontSize="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=TitleFontSize}"/>
-        
+                   FontSize="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=TitleFontSize}"
+                   FontFamily="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=TitleFontFamily}"/>
+
         <StackPanel x:Name="_Content" Grid.Row="2" Margin="50,30,50,30" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         <TextBlock x:Name="_Remark" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" 
                    Text="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=Remark}" 
                    Foreground="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=RemarkForeground}"
                    FontSize="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=RemarkFontSize}"
+                   FontFamily="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1},Path=RemarkFontFamily}"
                    Margin="50,0,50,0"/>
     </Grid>
 </UserControl>
